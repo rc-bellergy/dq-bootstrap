@@ -1,0 +1,46 @@
+{
+  "name": "bootstrap4-template",
+  "version": "1.0.0",
+  "description": "A bootstrap 4 temmplate project to use gulp auto build front-end code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rc-bellergy/bootstrap4.git"
+  },
+  "author": "Michael Chau <michael@designquest.com.hk>",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.14.3"
+  },
+  "bugs": {
+    "url": "https://github.com/rc-bellergy/bootstrap4/issues"
+  },
+  "homepage": "https://github.com/rc-bellergy/bootstrap4#readme",
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "browser-sync": "^2.24.4",
+    "colors": "^1.1.2",
+    "cssnano": "^3.10.0",
+    "file-exists": "^4.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-expect-file": "0.0.7",
+    "gulp-postcss": "^7.0.0",
+    "gulp-replace-name": "^1.0.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-string-replace": "^0.4.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^5.0.0",
+    "mq4-hover-shim": "^0.3.0",
+    "panini": "^1.5.1",
+    "rimraf": "^2.6.2",
+    "yargs": "^9.0.1"
+  }
+}

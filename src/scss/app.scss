@@ -1,0 +1,13 @@
+@import "bootstrap/bootstrap";
+$fa-font-path : "../assets/fonts";
+@import "node_modules/font-awesome/scss/font-awesome";
+@import "mixin";
+@import "variables";
+@import "type";
+@import "basic";
+// components
+@import "components/header";
+@import "components/footer";
+@import "components/nav";
+// pages
+@import "pages/home";

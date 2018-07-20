@@ -1,0 +1,69 @@
+
+
+@function px2vw($px, $base: 1200) {  // $px is a length in pixel, is an unit-less number
+	// convert to vw, page-width = 100% = 100vw
+	// when page-width is 1200, a certain length is $px
+	@return $px / $base * 100vw;
+	// input px, output vw
+	// Usage
+	// px2vw(24)
+	// Output
+	// 2vw
+}
+
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacityIE: $opacity * 100;
+	filter: alpha(opacity=$opacityIE);
+	// http://www.webcreatorbox.com/en/tutorials/sass-mixin-en/#mixin5
+	// Usage
+	// @include opacity(0.5);
+	// Output
+	// opacity: 0.5;
+	// filter: alpha(opacity=50);
+}
+
+@mixin abs-pos($top: auto, $left: auto, $bottom: auto, $right: auto, $z: auto) {
+	position: absolute;
+	z-index: $z;
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+	// modified from
+	// http://www.webcreatorbox.com/en/tutorials/sass-mixin-en/#mixin6
+	// Usage
+	// @include abs-pos(1, 5px, 20px, 10px, 15px);
+	// Output
+	// position: absolute;
+	// z-index: 1;
+	// top: 5px;
+	// right: 20px;
+	// bottom: 10px;
+	// left: 15px;
+}
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+@mixin ellipsis ($max-height, $lines: 2) {
+  // Fallback for non-webkit browsers.
+  // Fallback does not render ellipsis.
+  overflow: hidden;
+  max-height: $max-height;
+
+  // Webkit solution for multiline ellipsis
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+
+  // Solution for Opera
+  text-overflow: -o-ellipsis-lastline;
+}

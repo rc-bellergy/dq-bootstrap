@@ -61,9 +61,6 @@ gulp.task('watch', function () {
 // Erases the build folder
 gulp.task('clean', function () {
   rimraf('./build');
-  // if (getTaskName(this) == 'build') {
-  //   rimraf(pimcoreStatic); // watch directory
-  // }
 });
 
 // Copy assets
@@ -87,6 +84,7 @@ var sassOptions = {
 
 gulp.task('compile-sass', function () {
 
+  // https://github.com/twbs/mq4-hover-shim
   var processors = [
     mq4HoverShim.postprocessorFor({
       hoverSelectorPrefix: '.bs-true-hover '
@@ -151,7 +149,7 @@ gulp.task('compile-js', function () {
     .pipe(concat('app.js'))
     .pipe(gulp.dest('./build/website/static/js/'))
     .pipe(replace(new RegExp('staticFolder:""', 'g'), '"staticFolder":"/website/static/"'))
-    .pipe(uglify()) // use it when production
+    .pipe(uglify()) // use it when production (in Pimcore)
     .pipe(gulp.dest(pimcoreStatic + 'js/'))
 });
 

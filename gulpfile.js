@@ -35,8 +35,6 @@ var appJs = [
   'src/js/ui.js'
 ];
 
-var pimcoreStatic = '../htdocs/website/static/';
-
 function getTaskName(self) {
   return self.seq.slice(-1)[0];
 }
@@ -66,14 +64,9 @@ gulp.task('clean', function () {
 // Copy assets
 gulp.task('copy', function () {
   gulp.src(['./src/assets/**/*'])
-    .pipe(gulp.dest('./build/website/static/assets/'));
+    .pipe(gulp.dest('./build/assets/'));
   gulp.src(['./node_modules/bootstrap/dist/css/*.css'])
-    .pipe(gulp.dest('./build/website/static/css'));
-
-  // When 'build' task, copy assets to pimcore directorty
-  if (getTaskName(this) == 'build') {
-    gulp.src(['./src/assets/**/*']).pipe(gulp.dest(pimcoreStatic + '/assets'));
-  }
+    .pipe(gulp.dest('./build/css'));
 });
 
 var sassOptions = {
@@ -112,8 +105,7 @@ gulp.task('compile-sass', function () {
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss(processors))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(pimcoreStatic + '/css/')) // output to Pimcore also
-    .pipe(gulp.dest('./build/website/static/css/'));
+    .pipe(gulp.dest('./build/css/'));
 });
 
 gulp.task('compile-html', function () {
@@ -125,7 +117,7 @@ gulp.task('compile-html', function () {
       helpers: './src/html/helpers/',
       data: './src/html/data/'
     }))
-    .pipe(replace('../../assets/', '/website/static/assets/')) // update the image paths to fit the build folder setup
+    .pipe(replace('../../assets/', '/assets/')) // update the image paths to fit the build folder setup
     .pipe(gulp.dest('./build/'))
     .on('finish', browser.reload);
 });
@@ -139,18 +131,16 @@ gulp.task('compile-vendor', function () {
   return gulp.src(vendorJs)
     // .pipe(expect(vendorJs))
     .pipe(concat('vendor.js'))
-    .pipe(gulp.dest('./build/website/static/js/'))
-    .pipe(gulp.dest(pimcoreStatic + 'js/'))
+    .pipe(gulp.dest('./build/js/'))
 });
 
 gulp.task('compile-js', function () {
   return gulp.src(appJs)
     .pipe(expect(appJs))
     .pipe(concat('app.js'))
-    .pipe(gulp.dest('./build/website/static/js/'))
-    .pipe(replace(new RegExp('staticFolder:""', 'g'), '"staticFolder":"/website/static/"'))
-    .pipe(uglify()) // use it when production (in Pimcore)
-    .pipe(gulp.dest(pimcoreStatic + 'js/'))
+    .pipe(gulp.dest('./build/js/'))
+    // .pipe(replace(new RegExp('staticFolder:""', 'g'), '"staticFolder":"/"'))
+    //.pipe(uglify()) // use it when production (in Pimcore)
 });
 
 gulp.task('build', ['clean', 'copy', 'compile-js', 'compile-vendor', 'compile-sass', 'compile-html']);

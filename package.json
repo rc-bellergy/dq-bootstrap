@@ -28,7 +28,7 @@
     "colors": "^1.1.2",
     "cssnano": "^3.10.0",
     "file-exists": "^4.0.0",
-    "gulp": "^4.0.0",
+    "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.1",
     "gulp-expect-file": "^1.0.0",
